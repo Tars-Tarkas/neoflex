@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Tars-Tarkas/neoflex/static/css/main.073c9b0a.css",
+    "main.js": "/Tars-Tarkas/neoflex/static/js/main.9c5a6f32.js",
+    "static/js/787.aeb3bbbf.chunk.js": "/Tars-Tarkas/neoflex/static/js/787.aeb3bbbf.chunk.js",
+    "index.html": "/Tars-Tarkas/neoflex/index.html",
+    "main.073c9b0a.css.map": "/Tars-Tarkas/neoflex/static/css/main.073c9b0a.css.map",
+    "main.9c5a6f32.js.map": "/Tars-Tarkas/neoflex/static/js/main.9c5a6f32.js.map",
+    "787.aeb3bbbf.chunk.js.map": "/Tars-Tarkas/neoflex/static/js/787.aeb3bbbf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.9c5a6f32.js"
+  ]
+}
