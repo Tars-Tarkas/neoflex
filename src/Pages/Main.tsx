@@ -14,7 +14,7 @@ const Main = () => {
         <CardList />
       </MainBlock>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

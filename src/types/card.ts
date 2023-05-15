@@ -8,6 +8,7 @@ export interface ICardItem {
 
 export interface ICard {
   cards: ICardItem[];
+  shopCards: ICardItem[];
   loading: boolean;
-  error: boolean;
+  error: string;
 }

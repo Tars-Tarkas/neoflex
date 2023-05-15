@@ -4,18 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCard } from "../store/CardSlice";
 import { ICardItem } from "../types/card";
 import styled from "styled-components";
+import Wrapper from "./Wrapper";
 
 import Card from "./Card";
 
-const CartTitle = styled.h2`
+const CardTitle = styled.h2`
   font-family: var(--family);
   color: #838383;
   font-size: 20px;
 `;
 
-const Wrapper = styled.div`
-  width: 1110px;
-  margin: 0 auto;
+const CardsBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const CardList = () => {
@@ -26,18 +28,23 @@ const CardList = () => {
 
   const { cards, loading, error } = useSelector((state: any) => state.Card);
 
+  const { headphones = [], wireless_headphones = [] } = cards;
   return (
     <>
       <Wrapper>
-        <CartTitle>Наушники</CartTitle>
-        {cards.headphones?.map((item: ICardItem) => {
-          <Card key={item.id} {...item} />;
-        })}
+        <CardTitle>Наушники</CardTitle>
+        <CardsBlock>
+          {headphones.map((item: ICardItem) => {
+            return <Card key={item.id} {...item} />;
+          })}
+        </CardsBlock>
 
-        <CartTitle>Беспроводные наушники</CartTitle>
-        {cards.wireless_headphones?.map((item: ICardItem) => {
-          <Card key={item.id} {...item} />;
-        })}
+        <CardTitle>Беспроводные наушники</CardTitle>
+        <CardsBlock>
+          {wireless_headphones.map((item: ICardItem) => {
+            return <Card key={item.id} {...item} />;
+          })}
+        </CardsBlock>
       </Wrapper>
     </>
   );

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { ICard } from "../types/card";
 
 export const fetchCard: any = createAsyncThunk(
   "Card/fetchCard",
@@ -25,10 +26,21 @@ const CardSlice = createSlice({
   name: "Card",
   initialState: {
     cards: [],
+    shopCards: [],
     loading: false,
     error: "",
+  } as ICard,
+  reducers: {
+    addShopList(state, action) {
+      state.shopCards = [action.payload, ...state.shopCards];
+      console.log(state.shopCards);
+    },
+    removeShopList(state, action) {
+      state.shopCards = state.shopCards.filter(
+        (item) => item.id !== action.payload.id
+      );
+    },
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCard.pending, (state) => {
       state.loading = true;
@@ -45,5 +57,7 @@ const CardSlice = createSlice({
     });
   },
 });
+
+export const { addShopList, removeShopList } = CardSlice.actions;
 
 export default CardSlice.reducer;
