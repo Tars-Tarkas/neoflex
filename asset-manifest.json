@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/neoflex/static/css/main.073c9b0a.css",
-    "main.js": "/neoflex/static/js/main.2d43d75b.js",
+    "main.css": "/neoflex/static/css/main.6a2cf470.css",
+    "main.js": "/neoflex/static/js/main.b9588926.js",
     "static/js/787.aeb3bbbf.chunk.js": "/neoflex/static/js/787.aeb3bbbf.chunk.js",
+    "static/media/i-neoflex.svg?7y08xl": "/neoflex/static/media/i-neoflex.4f7540f63bdcc73dc5ca.svg",
+    "static/media/i-neoflex.eot?7y08xl": "/neoflex/static/media/i-neoflex.dea8b3c4bfa738a77363.eot",
+    "static/media/i-neoflex.woff?7y08xl": "/neoflex/static/media/i-neoflex.9767228893583c1d17c9.woff",
+    "static/media/i-neoflex.ttf?7y08xl": "/neoflex/static/media/i-neoflex.afd82bc71b7cfdb459d1.ttf",
     "index.html": "/neoflex/index.html",
-    "main.073c9b0a.css.map": "/neoflex/static/css/main.073c9b0a.css.map",
-    "main.2d43d75b.js.map": "/neoflex/static/js/main.2d43d75b.js.map",
+    "main.6a2cf470.css.map": "/neoflex/static/css/main.6a2cf470.css.map",
+    "main.b9588926.js.map": "/neoflex/static/js/main.b9588926.js.map",
     "787.aeb3bbbf.chunk.js.map": "/neoflex/static/js/787.aeb3bbbf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.2d43d75b.js"
+    "static/css/main.6a2cf470.css",
+    "static/js/main.b9588926.js"
   ]
 }
