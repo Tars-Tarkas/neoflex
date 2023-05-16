@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ICard } from "../types/card";
+import ShopCards from "../components/ShopCard";
 
 export const fetchCard: any = createAsyncThunk(
   "Card/fetchCard",
@@ -32,13 +33,34 @@ const CardSlice = createSlice({
   } as ICard,
   reducers: {
     addShopList(state, action) {
-      state.shopCards = [action.payload, ...state.shopCards];
-      console.log(state.shopCards);
+      const itemInCard = state.shopCards.find(
+        (item) => item.id === action.payload.id
+      );
+      console.log(itemInCard);
+      if (itemInCard) {
+        itemInCard.count++;
+      } else {
+        state.shopCards.push({ ...action.payload, count: 1 });
+      }
+      // state.shopCards = [action.payload, ...state.shopCards];
+      // state.shopCards = [action.payload, ...state.shopCards];
     },
     removeShopList(state, action) {
       state.shopCards = state.shopCards.filter(
         (item) => item.id !== action.payload.id
       );
+    },
+    increment(state, action) {
+      const item = state.shopCards.find((item) => item.id === action.payload)!;
+      item.count++;
+    },
+    decrement(state, action) {
+      const item = state.shopCards.find((item) => item.id === action.payload)!;
+      if (item.count === 1) {
+        item.count = 1;
+      } else {
+        item.count--;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -58,6 +80,7 @@ const CardSlice = createSlice({
   },
 });
 
-export const { addShopList, removeShopList } = CardSlice.actions;
+export const { addShopList, removeShopList, increment, decrement } =
+  CardSlice.actions;
 
 export default CardSlice.reducer;

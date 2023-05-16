@@ -5,7 +5,7 @@ import ShopCardItem from "./ShopCardItem";
 import { useSelector } from "react-redux";
 
 import { ICardItem } from "../types/card";
-const ShopCardBlock = styled.div``;
+const ShopCardBlock = styled.main``;
 
 const ShopCardContent = styled.div`
   display: flex;
@@ -64,8 +64,8 @@ const ShopCards: React.FC = () => {
   const { shopCards = [] } = useSelector((state: any) => state.Card);
   return (
     <>
-      <Wrapper>
-        <ShopCardBlock>
+      <ShopCardBlock>
+        <Wrapper>
           <ShopCardTitle>Корзина</ShopCardTitle>
           <ShopCardContent>
             <ShopCardItems>
@@ -79,8 +79,8 @@ const ShopCards: React.FC = () => {
               <ShopCardsButton>Перейти к оформлению</ShopCardsButton>
             </ShopCardsSum>
           </ShopCardContent>
-        </ShopCardBlock>
-      </Wrapper>
+        </Wrapper>
+      </ShopCardBlock>
     </>
   );
 };

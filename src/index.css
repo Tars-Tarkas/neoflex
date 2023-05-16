@@ -19,11 +19,22 @@
   --background: #eaeaea;
 }
 
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0;
   font-family: var(--family);
   color: var(--color-text);
   background-color: var(--background);
+}
+main {
+  min-height: calc(100vh - 149px);
+}
+footer {
+  padding-top: 20px;
+  height: 149px;
 }
 
 @font-face {
@@ -49,7 +60,7 @@ i {
   text-transform: none;
   line-height: 1;
 
-  /* Better Font Rendering =========== */
+  /* Better Font Rendring =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -12,30 +12,32 @@ const HeaderLogo = styled.span`
 `;
 
 const HeaderBlock = styled.header`
-  padding-top: 15px;
+  padding-top: 16px;
+  padding-right: 10px;
 `;
 
 const HeaderIconsBlock = styled.div`
   display: flex;
   gap: 45px;
+  padding-right: 9px;
 `;
 
 const IconFav = styled.i`
   color: #838383;
   position: relative;
-  font-size: 20px;
+  font-size: 21px;
 `;
 
 const IconShop = styled.i`
   color: #838383;
   position: relative;
-  font-size: 20px;
+  font-size: 22px;
 `;
 
 const IconsCount = styled.span`
   background-color: #ffa542;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   position: absolute;
   font-size: 15px;
@@ -44,7 +46,7 @@ const IconsCount = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 14px;
+  left: 16px;
   bottom: 10px;
   font-family: var(--family);
 `;

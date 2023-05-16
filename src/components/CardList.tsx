@@ -18,6 +18,7 @@ const CardsBlock = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 20px;
 `;
 
 const CardList = () => {

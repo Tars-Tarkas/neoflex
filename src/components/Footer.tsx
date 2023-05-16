@@ -1,24 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import Wrapper from "./Wrapper";
+import { NavLink } from "react-router-dom";
 
-const FooterLogo = styled.span`
+const FooterLogo = styled(NavLink)`
   font-family: var(--family);
   color: #101010;
   font-weight: var(--fw-bold);
   font-size: 25px;
+  text-decoration: none;
+  padding-right: 57px;
 `;
 
-const FooterBlock = styled.footer`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-`;
+const FooterBlock = styled.footer``;
 
 const FooterContent = styled.div`
   background-color: white;
-  padding-top: 29px;
+  padding-top: 32px;
   padding-left: 29px;
   padding-right: 29px;
   padding-bottom: 32px;
@@ -32,7 +30,7 @@ const FooterLink = styled.a.attrs({
   font-size: 17px;
   font-weight: var(--fw-regular);
   display: block;
-  margin-bottom: 10px;
+  line-height: 31px;
   text-decoration: none;
 `;
 
@@ -46,16 +44,17 @@ const FlexBox = styled.div`
 `;
 
 const IconLang = styled.i`
-  padding-right: 15px;
+  padding-right: 19px;
+  font-size: 17px;
 `;
 const IconVK = styled.i`
-  font-size: 40px;
+  font-size: 30px;
 `;
 const IconTelegram = styled.i`
-  font-size: 40px;
+  font-size: 30px;
 `;
 const IconWhatsapp = styled.i`
-  font-size: 40px;
+  font-size: 28px;
 `;
 
 const LangBlock = styled.div``;
@@ -64,11 +63,13 @@ const LangLink = styled.a`
   font-weight: var(--fw-mediun);
   font-size: 15px;
   padding-right: 14px;
+  line-height: 77px;
 `;
 
 const SocialLinkBlock = styled.div`
   display: flex;
   gap: 18px;
+  padding-left: 8px;
 `;
 
 const Footer = () => {
@@ -78,7 +79,7 @@ const Footer = () => {
         <Wrapper>
           <FooterContent>
             <FooterLinkBlock>
-              <FooterLogo>QPICK</FooterLogo>
+              <FooterLogo to="/">QPICK</FooterLogo>
               <FlexBox>
                 <FooterLink>Избранное</FooterLink>
                 <FooterLink>Корзина</FooterLink>
