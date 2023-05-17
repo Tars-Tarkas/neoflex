@@ -4,7 +4,7 @@ export interface ICardItem {
   title: string;
   price: number;
   rate: number;
-  count: number;
+  // count: number;
 }
 export interface ICardItemShop {
   id: number;

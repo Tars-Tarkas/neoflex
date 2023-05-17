@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ICardItem } from "../types/card";
 import { useDispatch } from "react-redux";
 import { addShopList } from "../store/CardSlice";
+import { locCurrency } from "../lib/lib";
 
 const CardImgBlock = styled.div`
   display: flex;
@@ -101,18 +102,6 @@ const CardFooter = styled.div`
 const Card: React.FC<ICardItem> = (item): JSX.Element => {
   const { img, title, price, rate } = item;
 
-  const Locale = (price: number) => {
-    const locale = navigator.language;
-    const LocaleOptions: Intl.NumberFormatOptions = {
-      style: "currency",
-      currency: "RUB",
-      currencyDisplay: "symbol",
-      useGrouping: false,
-      minimumFractionDigits: 0,
-    };
-    return price.toLocaleString(locale, LocaleOptions);
-  };
-
   const dispatch = useDispatch();
 
   const onClick = () => {
@@ -127,9 +116,9 @@ const Card: React.FC<ICardItem> = (item): JSX.Element => {
 
         <CardFooter>
           <CardTitle>{title}</CardTitle>
-          <CardPrice>{Locale(price)}</CardPrice>
+          <CardPrice>{locCurrency(price, false)}</CardPrice>
           <CardPriceDiscontBlock>
-            <CardPriceDiscount>{Locale(11212)}</CardPriceDiscount>
+            <CardPriceDiscount>{locCurrency(11212, false)}</CardPriceDiscount>
           </CardPriceDiscontBlock>
           <RateBlock>
             <IconRate className="i-rate" />

@@ -4,7 +4,9 @@ import Wrapper from "./Wrapper";
 import ShopCardItem from "./ShopCardItem";
 import { useSelector } from "react-redux";
 
-import { ICardItem } from "../types/card";
+import { ICardItemShop } from "../types/card";
+import { locCurrency } from "../lib/lib";
+
 const ShopCardBlock = styled.main``;
 
 const ShopCardContent = styled.div`
@@ -62,6 +64,15 @@ const ShopCardItems = styled.div`
 
 const ShopCards: React.FC = () => {
   const { shopCards = [] } = useSelector((state: any) => state.Card);
+
+  const getTotal = () => {
+    let totalPrice = 0;
+    shopCards.forEach((item: ICardItemShop) => {
+      totalPrice += item.price * item.count;
+    });
+    return { totalPrice };
+  };
+
   return (
     <>
       <ShopCardBlock>
@@ -69,13 +80,15 @@ const ShopCards: React.FC = () => {
           <ShopCardTitle>Корзина</ShopCardTitle>
           <ShopCardContent>
             <ShopCardItems>
-              {shopCards.map((item: ICardItem) => {
+              {shopCards.map((item: ICardItemShop) => {
                 return <ShopCardItem key={item.id} {...item} />;
               })}
             </ShopCardItems>
             <ShopCardsSum>
               <ShopCardText>Итого:</ShopCardText>
-              <ShopCardText>Итого:</ShopCardText>
+              <ShopCardText>
+                {locCurrency(getTotal().totalPrice, true)}
+              </ShopCardText>
               <ShopCardsButton>Перейти к оформлению</ShopCardsButton>
             </ShopCardsSum>
           </ShopCardContent>

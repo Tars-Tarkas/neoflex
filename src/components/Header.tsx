@@ -66,8 +66,7 @@ interface HeaderProps {
   fav?: number;
 }
 
-const Header: React.FC<HeaderProps> = (props) => {
-  const { count = 0, fav = 0 } = props;
+const Header: React.FC<HeaderProps> = () => {
   const { shopCards = [] } = useSelector((state: any) => state.Card);
 
   return (
@@ -81,7 +80,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <HeaderIconsBlock>
               <HeaderLink to="/shoplist">
                 <IconFav className="i-fav">
-                  <IconsCount>{fav}</IconsCount>
+                  <IconsCount>2</IconsCount>
                 </IconFav>
               </HeaderLink>
               <HeaderLink to="/shoplist">

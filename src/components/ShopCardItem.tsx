@@ -1,9 +1,9 @@
 import React from "react";
-import { useState } from "react";
 import styled from "styled-components";
-import { ICardItem } from "../types/card";
+import { ICardItemShop } from "../types/card";
 import { useDispatch } from "react-redux";
-import { removeShopList } from "../store/CardSlice";
+import { removeShopItem, increment, decrement } from "../store/CardSlice";
+import { locCurrency } from "../lib/lib";
 
 const ShopCardItems = styled.div`
   position: relative;
@@ -95,42 +95,39 @@ const ShopCardTotalPrice = styled.span`
   text-align: right;
 `;
 
-const ShopCardItem: React.FC<ICardItem> = (item) => {
+const ShopCardItem: React.FC<ICardItemShop> = (item) => {
   const { img, price, title, count } = item;
 
   const dispatch = useDispatch();
 
-  // const [count, setCount] = useState(1);
-
   const onClick = () => {
-    dispatch(removeShopList(item));
+    dispatch(removeShopItem(item));
   };
 
-  const Locale = (price: number) => {
-    const locale = navigator.language;
-    const LocaleOptions: Intl.NumberFormatOptions = {
-      style: "currency",
-      currency: "RUB",
-      currencyDisplay: "symbol",
-      useGrouping: true,
-      minimumFractionDigits: 0,
-    };
-    return price.toLocaleString(locale, LocaleOptions);
+  const incrementCount = () => {
+    dispatch(increment(item));
   };
+  const decrementCount = () => {
+    dispatch(decrement(item));
+  };
+
   return (
     <>
       <ShopCardItems>
         <ShopCardImg src={process.env.PUBLIC_URL + img}></ShopCardImg>
         <ShopCardTitlePrice>
           <ShopCardTitle>{title}</ShopCardTitle>
-          <ShopCardPrice>{Locale(price)}</ShopCardPrice>
+          <ShopCardPrice>{locCurrency(price, true)}</ShopCardPrice>
         </ShopCardTitlePrice>
 
         <ShopCardCount>
-          <ShopCardCountButton>-</ShopCardCountButton> {count}
-          <ShopCardCountButton>+</ShopCardCountButton>
+          <ShopCardCountButton onClick={decrementCount}>-</ShopCardCountButton>
+          {count}
+          <ShopCardCountButton onClick={incrementCount}>+</ShopCardCountButton>
         </ShopCardCount>
-        <ShopCardTotalPrice>{Locale(price * count)}</ShopCardTotalPrice>
+        <ShopCardTotalPrice>
+          {locCurrency(price * count, true)}
+        </ShopCardTotalPrice>
 
         <IconRemove className="i-del" onClick={onClick} />
       </ShopCardItems>
