@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import { ICardItem } from "../types/card";
 import { useDispatch } from "react-redux";
 import { addShopList } from "../store/CardSlice";
 import { locCurrency } from "../lib/lib";
+import { type } from "os";
 
 const CardImgBlock = styled.div`
   display: flex;
@@ -66,12 +68,19 @@ const CardPayButton = styled.button`
   color: #000000;
   font-size: 17px;
   text-align: right;
-  width: fit-content;
   padding: 0;
   align-self: end;
   grid-area: F;
   position: relative;
-  left: 59%;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: right;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: #838383;
+  }
 `;
 
 const CardPriceDiscontBlock = styled.div`
@@ -86,7 +95,6 @@ const CardPriceDiscount = styled.span`
   font-weight: var(--fw-semibold);
   padding-right: 10px;
   margin-bottom: 9px;
-  /* display: none; */
 `;
 
 const CardFooter = styled.div`
@@ -100,9 +108,11 @@ const CardFooter = styled.div`
 `;
 
 const Card: React.FC<ICardItem> = (item): JSX.Element => {
-  const { img, title, price, rate } = item;
+  const { img, title, price, rate, discount } = item;
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const onClick = () => {
     dispatch(addShopList(item));
@@ -116,15 +126,17 @@ const Card: React.FC<ICardItem> = (item): JSX.Element => {
 
         <CardFooter>
           <CardTitle>{title}</CardTitle>
-          <CardPrice>{locCurrency(price, false)}</CardPrice>
+          <CardPrice>{locCurrency(price - discount, false)}</CardPrice>
           <CardPriceDiscontBlock>
-            <CardPriceDiscount>{locCurrency(11212, false)}</CardPriceDiscount>
+            <CardPriceDiscount>
+              {discount ? locCurrency(price, false) : null}
+            </CardPriceDiscount>
           </CardPriceDiscontBlock>
           <RateBlock>
             <IconRate className="i-rate" />
             <CardRate>{rate}</CardRate>
           </RateBlock>
-          <CardPayButton onClick={onClick}>Купить</CardPayButton>
+          <CardPayButton onClick={onClick}>{t("buy")}</CardPayButton>
         </CardFooter>
       </CardItem>
     </>

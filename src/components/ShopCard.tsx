@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import Wrapper from "./Wrapper";
 import ShopCardItem from "./ShopCardItem";
 import { useSelector } from "react-redux";
@@ -64,6 +65,7 @@ const ShopCardItems = styled.div`
 
 const ShopCards: React.FC = () => {
   const { shopCards = [] } = useSelector((state: any) => state.Card);
+  const { t } = useTranslation();
 
   const getTotal = () => {
     let totalPrice = 0;
@@ -77,7 +79,7 @@ const ShopCards: React.FC = () => {
   return (
     <Wrapper>
       <ShopCardBlock>
-        <ShopCardTitle>Корзина</ShopCardTitle>
+        <ShopCardTitle>{t("cart")}</ShopCardTitle>
         <ShopCardContent>
           <ShopCardItems>
             {shopCards.map((item: ICardItemShop) => {
@@ -85,11 +87,11 @@ const ShopCards: React.FC = () => {
             })}
           </ShopCardItems>
           <ShopCardsSum>
-            <ShopCardText>Итого:</ShopCardText>
+            <ShopCardText>{t("total")}:</ShopCardText>
             <ShopCardText>
               {locCurrency(getTotal().totalPrice, true)}
             </ShopCardText>
-            <ShopCardsButton>Перейти к оформлению</ShopCardsButton>
+            <ShopCardsButton>{t("payment")}</ShopCardsButton>
           </ShopCardsSum>
         </ShopCardContent>
       </ShopCardBlock>

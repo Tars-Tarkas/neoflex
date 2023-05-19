@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Wrapper from "./Wrapper";
 
 const FooterLogo = styled(NavLink)`
@@ -9,7 +10,6 @@ const FooterLogo = styled(NavLink)`
   font-weight: var(--fw-bold);
   font-size: 25px;
   text-decoration: none;
-  padding-right: 57px;
 `;
 
 const FooterBlock = styled.footer``;
@@ -19,8 +19,10 @@ const FooterContent = styled.div`
   padding-top: 32px;
   padding-left: 29px;
   padding-right: 29px;
-  padding-bottom: 32px;
   border-radius: var(--radius) var(--radius) 0px 0px;
+  display: grid;
+  grid-template-columns: 317px 277px repeat(1, 1fr);
+  grid-template-rows: 50px;
 `;
 const FooterNavLink = styled(NavLink)`
   font-family: var(--family);
@@ -48,13 +50,10 @@ const FooterLink = styled.a`
   text-decoration: none;
 `;
 
-const FooterLinkBlock = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
 const FlexBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const IconLang = styled.i`
@@ -79,6 +78,8 @@ const SocialLinkBlock = styled.div`
   display: flex;
   gap: 18px;
   padding-left: 8px;
+  justify-content: flex-end;
+  grid-area: 1 / 4 / 2 / 5;
 `;
 
 const FooterLangUl = styled.ul`
@@ -98,43 +99,51 @@ interface footerProps {
 
 const Footer = (props: footerProps) => {
   const { footerLang = {} } = props;
+  const { t, i18n } = useTranslation();
+
+  const selectLang = (e: React.MouseEvent<HTMLElement>) => {
+    console.log(e.currentTarget.dataset.id);
+    i18n.changeLanguage(e.currentTarget.dataset.id);
+  };
 
   return (
     <Wrapper>
       <FooterBlock>
         <FooterContent>
-          <FooterLinkBlock>
-            <FooterLogo to="/">QPICK</FooterLogo>
-            <FlexBox>
-              <FooterNavLink to="/favourites">Избранное</FooterNavLink>
-              <FooterNavLink to="/shoplist">Корзина</FooterNavLink>
-              <FooterNavLink to="/contacts">Контакты</FooterNavLink>
-            </FlexBox>
-            <FlexBox>
-              <FooterNavLink to="/requirement">Условия сервиса</FooterNavLink>
-              <LangBlock>
-                <IconLang className="i-language" />{" "}
-                <FooterLangUl>
-                  {Object.entries(footerLang).map(([key, value]) => (
-                    <FooterLangLi key={key} data-id={key}>
-                      {value}
-                    </FooterLangLi>
-                  ))}
-                </FooterLangUl>
-              </LangBlock>
-            </FlexBox>
-            <SocialLinkBlock>
-              <FooterLink>
-                <IconVK className="i-VK" />
-              </FooterLink>
-              <FooterLink>
-                <IconTelegram className="i-Telegram" />
-              </FooterLink>
-              <FooterLink>
-                <IconWhatsapp className="i-Whatsapp" />
-              </FooterLink>
-            </SocialLinkBlock>
-          </FooterLinkBlock>
+          <FooterLogo to="/">QPICK</FooterLogo>
+          <FlexBox>
+            <FooterNavLink to="/favourites">{t("favourites")}</FooterNavLink>
+            <FooterNavLink to="/shoplist">{t("cart")}</FooterNavLink>
+            <FooterNavLink to="/contacts">{t("сontacts")}</FooterNavLink>
+          </FlexBox>
+          <FlexBox>
+            <FooterNavLink to="/requirement">{t("requirement")}</FooterNavLink>
+            <LangBlock>
+              <IconLang className="i-language" />{" "}
+              <FooterLangUl>
+                {Object.entries(footerLang).map(([key, value]) => (
+                  <FooterLangLi
+                    key={key}
+                    data-id={key}
+                    onClick={(e) => selectLang(e)}
+                  >
+                    {value}
+                  </FooterLangLi>
+                ))}
+              </FooterLangUl>
+            </LangBlock>
+          </FlexBox>
+          <SocialLinkBlock>
+            <FooterLink>
+              <IconVK className="i-VK" />
+            </FooterLink>
+            <FooterLink>
+              <IconTelegram className="i-Telegram" />
+            </FooterLink>
+            <FooterLink>
+              <IconWhatsapp className="i-Whatsapp" />
+            </FooterLink>
+          </SocialLinkBlock>
         </FooterContent>
       </FooterBlock>
     </Wrapper>

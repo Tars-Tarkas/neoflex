@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { ICardItem } from "../types/card";
 import styled from "styled-components";
 import Wrapper from "./Wrapper";
@@ -28,10 +29,12 @@ const CardList = () => {
   const { cards } = useSelector((state: any) => state.Card);
 
   const { headphones = [], wireless_headphones = [] } = cards;
+
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <CardSection>
-        <CardTitle>Наушники</CardTitle>
+        <CardTitle>{t("headphones")}</CardTitle>
         <CardsBlock>
           {headphones.map((item: ICardItem) => {
             return <Card key={item.id} {...item} />;
@@ -39,7 +42,7 @@ const CardList = () => {
         </CardsBlock>
       </CardSection>
       <CardSection>
-        <CardTitle>Беспроводные наушники</CardTitle>
+        <CardTitle>{t("Wireless_headphones")}</CardTitle>
         <CardsBlock>
           {wireless_headphones.map((item: ICardItem) => {
             return <Card key={item.id} {...item} />;
