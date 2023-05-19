@@ -18,7 +18,7 @@ export const fetchCard: any = createAsyncThunk(
       const data = await res.json();
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -40,8 +40,6 @@ const CardSlice = createSlice({
       } else {
         state.shopCards.push({ ...action.payload, count: 1 });
       }
-      // state.shopCards = [action.payload, ...state.shopCards];
-      // state.shopCards = [action.payload, ...state.shopCards];
     },
     removeShopItem(state, action) {
       state.shopCards = state.shopCards.filter(
@@ -77,7 +75,7 @@ const CardSlice = createSlice({
     });
     builder.addCase(fetchCard.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message;
+      state.error = action.payload;
     });
   },
 });

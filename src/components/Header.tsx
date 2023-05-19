@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Wrapper from "./Wrapper";
 
 const HeaderLogo = styled.span`
   font-family: var(--family);
@@ -14,12 +13,13 @@ const HeaderLogo = styled.span`
 const HeaderBlock = styled.header`
   padding-top: 16px;
   padding-right: 10px;
+  margin-bottom: 15px;
 `;
 
 const HeaderIconsBlock = styled.div`
   display: flex;
   gap: 45px;
-  padding-right: 9px;
+  padding-right: 25px;
 `;
 
 const IconFav = styled.i`
@@ -61,38 +61,51 @@ const HeaderLink = styled(NavLink)`
   text-decoration: none;
 `;
 
+const HeaderWrapper = styled.div`
+  max-width: 1135px;
+  margin: 0 auto;
+`;
+
 interface HeaderProps {
   count?: number;
   fav?: number;
 }
 
 const Header: React.FC<HeaderProps> = () => {
-  const { shopCards = [] } = useSelector((state: any) => state.Card);
+  const { shopCards } = useSelector((state: any) => state.Card);
+
+  const getTotal = (array: []) => {
+    let totalQuantity = 0;
+    array.forEach((item: any) => {
+      totalQuantity += item.count;
+    });
+    return { totalQuantity };
+  };
 
   return (
-    <>
+    <HeaderWrapper>
       <HeaderBlock>
-        <Wrapper>
-          <HeaderContent>
-            <HeaderLink to="/">
-              <HeaderLogo>QPICK</HeaderLogo>
+        <HeaderContent>
+          <HeaderLink to="/">
+            <HeaderLogo>QPICK</HeaderLogo>
+          </HeaderLink>
+          <HeaderIconsBlock>
+            <HeaderLink to="/favourites">
+              <IconFav className="i-fav">
+                <IconsCount>2</IconsCount>
+              </IconFav>
             </HeaderLink>
-            <HeaderIconsBlock>
-              <HeaderLink to="/shoplist">
-                <IconFav className="i-fav">
-                  <IconsCount>2</IconsCount>
-                </IconFav>
-              </HeaderLink>
-              <HeaderLink to="/shoplist">
-                <IconShop className="i-shopping">
-                  <IconsCount>{shopCards.length}</IconsCount>
-                </IconShop>
-              </HeaderLink>
-            </HeaderIconsBlock>
-          </HeaderContent>
-        </Wrapper>
+            <HeaderLink to="/shoplist">
+              <IconShop className="i-shopping">
+                {getTotal(shopCards).totalQuantity !== 0 ? (
+                  <IconsCount>{getTotal(shopCards).totalQuantity}</IconsCount>
+                ) : null}
+              </IconShop>
+            </HeaderLink>
+          </HeaderIconsBlock>
+        </HeaderContent>
       </HeaderBlock>
-    </>
+    </HeaderWrapper>
   );
 };
 

@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
+import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ShopCards from "../components/ShopCard";
 
 const langObj = {
   kz: "Каз",
@@ -9,14 +9,16 @@ const langObj = {
   en: "Eng",
 };
 
-const ShopList = () => {
+const MainStyle = styled.main``;
+
+const Requirement = () => {
   return (
     <>
       <Header />
-      <ShopCards />
+      <MainStyle></MainStyle>
       <Footer footerLang={langObj} />
     </>
   );
 };
 
-export default ShopList;
+export default Requirement;

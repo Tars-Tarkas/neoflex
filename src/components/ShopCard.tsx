@@ -70,31 +70,30 @@ const ShopCards: React.FC = () => {
     shopCards.forEach((item: ICardItemShop) => {
       totalPrice += item.price * item.count;
     });
+
     return { totalPrice };
   };
 
   return (
-    <>
+    <Wrapper>
       <ShopCardBlock>
-        <Wrapper>
-          <ShopCardTitle>Корзина</ShopCardTitle>
-          <ShopCardContent>
-            <ShopCardItems>
-              {shopCards.map((item: ICardItemShop) => {
-                return <ShopCardItem key={item.id} {...item} />;
-              })}
-            </ShopCardItems>
-            <ShopCardsSum>
-              <ShopCardText>Итого:</ShopCardText>
-              <ShopCardText>
-                {locCurrency(getTotal().totalPrice, true)}
-              </ShopCardText>
-              <ShopCardsButton>Перейти к оформлению</ShopCardsButton>
-            </ShopCardsSum>
-          </ShopCardContent>
-        </Wrapper>
+        <ShopCardTitle>Корзина</ShopCardTitle>
+        <ShopCardContent>
+          <ShopCardItems>
+            {shopCards.map((item: ICardItemShop) => {
+              return <ShopCardItem key={item.id} {...item} />;
+            })}
+          </ShopCardItems>
+          <ShopCardsSum>
+            <ShopCardText>Итого:</ShopCardText>
+            <ShopCardText>
+              {locCurrency(getTotal().totalPrice, true)}
+            </ShopCardText>
+            <ShopCardsButton>Перейти к оформлению</ShopCardsButton>
+          </ShopCardsSum>
+        </ShopCardContent>
       </ShopCardBlock>
-    </>
+    </Wrapper>
   );
 };
 

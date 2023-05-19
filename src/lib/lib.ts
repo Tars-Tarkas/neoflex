@@ -16,3 +16,13 @@ export const locCurrency = (price: number, grouping: boolean) => {
   };
   return price.toLocaleString(locale, LocaleOptions);
 };
+
+// export const getTotal = (array: []) => {
+//   let totalQuantity = 0;
+//   let totalPrice = 0;
+//   array.forEach((item: []) => {
+//     totalQuantity += item.quantity;
+//     totalPrice += item.price * item.quantity;
+//   });
+//   return { totalPrice, totalQuantity };
+// };

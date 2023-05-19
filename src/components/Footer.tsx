@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import styled from "styled-components";
-import Wrapper from "./Wrapper";
 import { NavLink } from "react-router-dom";
+import Wrapper from "./Wrapper";
 
 const FooterLogo = styled(NavLink)`
   font-family: var(--family);
@@ -22,9 +22,23 @@ const FooterContent = styled.div`
   padding-bottom: 32px;
   border-radius: var(--radius) var(--radius) 0px 0px;
 `;
-const FooterLink = styled.a.attrs({
-  href: "#",
-})`
+const FooterNavLink = styled(NavLink)`
+  font-family: var(--family);
+  color: #000000;
+  font-size: 17px;
+  font-weight: var(--fw-regular);
+  display: block;
+  line-height: 31px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: #838383;
+  }
+`;
+
+const FooterLink = styled.a`
   font-family: var(--family);
   color: #000000;
   font-size: 17px;
@@ -57,13 +71,8 @@ const IconWhatsapp = styled.i`
   font-size: 28px;
 `;
 
-const LangBlock = styled.div``;
-
-const LangLink = styled.a`
-  font-weight: var(--fw-mediun);
-  font-size: 15px;
-  padding-right: 14px;
-  line-height: 77px;
+const LangBlock = styled.div`
+  display: flex;
 `;
 
 const SocialLinkBlock = styled.div`
@@ -72,43 +81,63 @@ const SocialLinkBlock = styled.div`
   padding-left: 8px;
 `;
 
-const Footer = () => {
+const FooterLangUl = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+`;
+const FooterLangLi = styled.li<React.LiHTMLAttributes<HTMLLIElement>>`
+  cursor: pointer;
+`;
+
+interface footerProps {
+  footerLang?: Object;
+}
+
+const Footer = (props: footerProps) => {
+  const { footerLang = {} } = props;
+
   return (
-    <>
+    <Wrapper>
       <FooterBlock>
-        <Wrapper>
-          <FooterContent>
-            <FooterLinkBlock>
-              <FooterLogo to="/">QPICK</FooterLogo>
-              <FlexBox>
-                <FooterLink>Избранное</FooterLink>
-                <FooterLink>Корзина</FooterLink>
-                <FooterLink>Контакты</FooterLink>
-              </FlexBox>
-              <FlexBox>
-                <FooterLink>Условия сервиса</FooterLink>
-                <LangBlock>
-                  <IconLang className="i-language" />
-                  <LangLink>Рус</LangLink>
-                  <LangLink>Eng</LangLink>
-                </LangBlock>
-              </FlexBox>
-              <SocialLinkBlock>
-                <FooterLink>
-                  <IconVK className="i-VK" />
-                </FooterLink>
-                <FooterLink>
-                  <IconTelegram className="i-Telegram" />
-                </FooterLink>
-                <FooterLink>
-                  <IconWhatsapp className="i-Whatsapp" />
-                </FooterLink>
-              </SocialLinkBlock>
-            </FooterLinkBlock>
-          </FooterContent>
-        </Wrapper>
+        <FooterContent>
+          <FooterLinkBlock>
+            <FooterLogo to="/">QPICK</FooterLogo>
+            <FlexBox>
+              <FooterNavLink to="/favourites">Избранное</FooterNavLink>
+              <FooterNavLink to="/shoplist">Корзина</FooterNavLink>
+              <FooterNavLink to="/contacts">Контакты</FooterNavLink>
+            </FlexBox>
+            <FlexBox>
+              <FooterNavLink to="/requirement">Условия сервиса</FooterNavLink>
+              <LangBlock>
+                <IconLang className="i-language" />{" "}
+                <FooterLangUl>
+                  {Object.entries(footerLang).map(([key, value]) => (
+                    <FooterLangLi key={key} data-id={key}>
+                      {value}
+                    </FooterLangLi>
+                  ))}
+                </FooterLangUl>
+              </LangBlock>
+            </FlexBox>
+            <SocialLinkBlock>
+              <FooterLink>
+                <IconVK className="i-VK" />
+              </FooterLink>
+              <FooterLink>
+                <IconTelegram className="i-Telegram" />
+              </FooterLink>
+              <FooterLink>
+                <IconWhatsapp className="i-Whatsapp" />
+              </FooterLink>
+            </SocialLinkBlock>
+          </FooterLinkBlock>
+        </FooterContent>
       </FooterBlock>
-    </>
+    </Wrapper>
   );
 };
 
