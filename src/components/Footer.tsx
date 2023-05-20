@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -19,10 +20,12 @@ const FooterContent = styled.div`
   padding-top: 32px;
   padding-left: 29px;
   padding-right: 29px;
+  padding-bottom: 32px;
   border-radius: var(--radius) var(--radius) 0px 0px;
   display: grid;
   grid-template-columns: 317px 277px repeat(1, 1fr);
-  grid-template-rows: 50px;
+  grid-template-rows: 82px;
+  height: 100%;
 `;
 const FooterNavLink = styled(NavLink)`
   font-family: var(--family);
@@ -89,8 +92,14 @@ const FooterLangUl = styled.ul`
   display: flex;
   gap: 10px;
 `;
-const FooterLangLi = styled.li<React.LiHTMLAttributes<HTMLLIElement>>`
+const FooterLangLi = styled.li.attrs({
+  selected: true,
+})<React.LiHTMLAttributes<HTMLLIElement>>`
+  font-family: var(--famyli);
+  font-size: 15px;
+  font-weight: ${(props) => (props.selected ? 500 : 700)};
   cursor: pointer;
+  color: ${(props) => (props.selected ? "#101010" : "#FFA542")};
 `;
 
 interface footerProps {
@@ -100,10 +109,14 @@ interface footerProps {
 const Footer = (props: footerProps) => {
   const { footerLang = {} } = props;
   const { t, i18n } = useTranslation();
+  const [selectedLi, setSelecterLi] = useState(false);
 
   const selectLang = (e: React.MouseEvent<HTMLElement>) => {
-    console.log(e.currentTarget.dataset.id);
     i18n.changeLanguage(e.currentTarget.dataset.id);
+    if ((e.currentTarget.dataset.id = i18n.language)) {
+      setSelecterLi(selectedLi);
+      console.log(selectedLi);
+    }
   };
 
   return (
@@ -119,10 +132,12 @@ const Footer = (props: footerProps) => {
           <FlexBox>
             <FooterNavLink to="/requirement">{t("requirement")}</FooterNavLink>
             <LangBlock>
-              <IconLang className="i-language" />{" "}
+              <IconLang className="i-language" />
               <FooterLangUl>
                 {Object.entries(footerLang).map(([key, value]) => (
                   <FooterLangLi
+                    selected={selectedLi}
+                    color=""
                     key={key}
                     data-id={key}
                     onClick={(e) => selectLang(e)}

@@ -1,5 +1,14 @@
 ### Необходимо разработать две страницы интернет-магазина аудио аксессуаров.
 
+Для запуска:
+
+```
+git clone https://github.com/Tars-Tarkas/neoflex.git
+cd neoflex
+npm install
+npm run start
+```
+
 ```
 Первая страница – каталог товаров, вторая – корзина с приобретенными товарами.
 Макет доступен по сылке: https://www.figma.com/file/bBkg5W8GRwGmhNCVeXevoN/Neoflex-Invite-Test?node-id=0%3A1
