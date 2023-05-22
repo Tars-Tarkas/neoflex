@@ -12,7 +12,7 @@ const HeaderLogo = styled.span`
 
 const HeaderBlock = styled.header`
   padding-top: 16px;
-  padding-right: 10px;
+
   margin-bottom: 15px;
 `;
 
@@ -34,7 +34,7 @@ const IconShop = styled.i`
   font-size: 22px;
 `;
 
-const IconsCount = styled.span`
+const IconsCount = styled.span.attrs({})`
   background-color: #ffa542;
   width: 18px;
   height: 18px;
@@ -72,19 +72,11 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = () => {
-  const { shopCards } = useSelector((state: any) => state.Card);
-
-  const getTotal = (array: []) => {
-    let totalQuantity = 0;
-    array.forEach((item: any) => {
-      totalQuantity += item.count;
-    });
-    return { totalQuantity };
-  };
-
+  const { shopCards = [] } = useSelector((state: any) => state.Card);
+  let arrayLength = shopCards.length;
   return (
-    <HeaderWrapper>
-      <HeaderBlock>
+    <HeaderBlock>
+      <HeaderWrapper>
         <HeaderContent>
           <HeaderLink to="/">
             <HeaderLogo>QPICK</HeaderLogo>
@@ -97,15 +89,13 @@ const Header: React.FC<HeaderProps> = () => {
             </HeaderLink>
             <HeaderLink to="/shoplist">
               <IconShop className="i-shopping">
-                {getTotal(shopCards).totalQuantity !== 0 ? (
-                  <IconsCount>{getTotal(shopCards).totalQuantity}</IconsCount>
-                ) : null}
+                {arrayLength !== 0 && <IconsCount>{arrayLength}</IconsCount>}
               </IconShop>
             </HeaderLink>
           </HeaderIconsBlock>
         </HeaderContent>
-      </HeaderBlock>
-    </HeaderWrapper>
+      </HeaderWrapper>
+    </HeaderBlock>
   );
 };
 

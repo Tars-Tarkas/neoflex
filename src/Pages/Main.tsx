@@ -20,12 +20,20 @@ const Main = () => {
   useEffect(() => {
     dispatch(fetchCard());
   }, [dispatch]);
+
   const { loading, error } = useSelector((state: any) => state.Card);
+
   return (
     <>
       <Header />
       <MainBlock>
-        {loading ? <Loader /> : error ? <p>{error}</p> : <CardList />}
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <CardList title="Карточки товаров" />
+        )}
       </MainBlock>
       <Footer footerLang={langObj} />
     </>

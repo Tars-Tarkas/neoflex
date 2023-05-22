@@ -14,10 +14,13 @@ function App() {
       <Routes>
         <Route path="*" element={<PageNotFound />} />
         <Route path="/" element={<Main />} />
-        <Route path="/shoplist" element={<ShopList />} />
-        <Route path="/favourites" element={<Favorites />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/Requirement" element={<Requirement />} />
+        <Route path="/shoplist" element={<ShopList title="Корзина" />} />
+        <Route path="/favourites" element={<Favorites title="Избранное" />} />
+        <Route path="/contacts" element={<Contacts title="Контакты" />} />
+        <Route
+          path="/Requirement"
+          element={<Requirement title="Условия сервиса" />}
+        />
       </Routes>
     </>
   );

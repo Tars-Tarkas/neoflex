@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -43,7 +43,9 @@ const FooterNavLink = styled(NavLink)`
   }
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled.a.attrs({
+  href: "#",
+})`
   font-family: var(--family);
   color: #000000;
   font-size: 17px;
@@ -84,40 +86,51 @@ const SocialLinkBlock = styled.div`
   justify-content: flex-end;
   grid-area: 1 / 4 / 2 / 5;
 `;
-
-const FooterLangUl = styled.ul`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+const SelectLang = styled.div`
   display: flex;
   gap: 10px;
 `;
-const FooterLangLi = styled.li.attrs({
-  selected: true,
-})<React.LiHTMLAttributes<HTMLLIElement>>`
+const SelectLangInput = styled.input.attrs({
+  type: "radio",
+})`
+  display: none;
+  &:checked ~ label {
+    font-family: var(--famyli);
+    color: #ffa542;
+    font-weight: var(--fw-bold);
+  }
+`;
+const SelectLangLabel = styled.label`
   font-family: var(--famyli);
-  font-size: 15px;
-  font-weight: ${(props) => (props.selected ? 500 : 700)};
+  color: #101010;
+  font-weight: var(--fw-mediun);
   cursor: pointer;
-  color: ${(props) => (props.selected ? "#101010" : "#FFA542")};
 `;
 
 interface footerProps {
-  footerLang?: Object;
+  footerLang?: object;
 }
 
 const Footer = (props: footerProps) => {
   const { footerLang = {} } = props;
   const { t, i18n } = useTranslation();
-  const [selectedLi, setSelecterLi] = useState(false);
 
-  const selectLang = (e: React.MouseEvent<HTMLElement>) => {
-    i18n.changeLanguage(e.currentTarget.dataset.id);
-    if ((e.currentTarget.dataset.id = i18n.language)) {
-      setSelecterLi(selectedLi);
-      console.log(selectedLi);
-    }
+  const [toggleLang, setToggleLang] = useState("ru");
+
+  const selectLang = (e: React.ChangeEvent<HTMLInputElement>) => {
+    i18n.changeLanguage(e.target.value);
+    setToggleLang(e.target.value);
   };
+
+  useEffect(() => {
+    for (let value of Object.keys(footerLang)) {
+      if (value === i18n.language) {
+        setToggleLang("ru");
+      }
+    }
+  }, [i18n.language, footerLang]);
+
+  console.log(toggleLang);
 
   return (
     <Wrapper>
@@ -133,19 +146,20 @@ const Footer = (props: footerProps) => {
             <FooterNavLink to="/requirement">{t("requirement")}</FooterNavLink>
             <LangBlock>
               <IconLang className="i-language" />
-              <FooterLangUl>
-                {Object.entries(footerLang).map(([key, value]) => (
-                  <FooterLangLi
-                    selected={selectedLi}
-                    color=""
-                    key={key}
-                    data-id={key}
-                    onClick={(e) => selectLang(e)}
-                  >
-                    {value}
-                  </FooterLangLi>
+              <SelectLang>
+                {Object.entries(footerLang).map(([key, value], i) => (
+                  <div key={i}>
+                    <SelectLangInput
+                      value={key}
+                      id={key}
+                      name="select-lang"
+                      onChange={selectLang}
+                      defaultChecked={toggleLang === key}
+                    />
+                    <SelectLangLabel htmlFor={key}>{value}</SelectLangLabel>
+                  </div>
                 ))}
-              </FooterLangUl>
+              </SelectLang>
             </LangBlock>
           </FlexBox>
           <SocialLinkBlock>

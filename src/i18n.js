@@ -1,5 +1,12 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import XHR from "i18next-http-backend";
+
+const options = {
+  order: ["querystring", "navigator"],
+  lookupQuerystring: "lng",
+};
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -43,10 +50,16 @@ i18n.use(initReactI18next).init({
       },
     },
   },
-  lng: "ru", // if you're using a language detector, do not define the lng option
+  // lng: "en", // if you're using a language detector, do not define the lng option
   fallbackLng: "ru",
+  supportedLngs: ["kz", "ru", "en"],
 
   interpolation: {
     escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
   },
 });
+
+i18n.use(LanguageDetector);
+i18n.use(initReactI18next);
+i18n.use(XHR);
+i18n.init({ detection: options });

@@ -4,21 +4,21 @@ import { useTranslation } from "react-i18next";
 import Wrapper from "./Wrapper";
 import ShopCardItem from "./ShopCardItem";
 import { useSelector } from "react-redux";
-
 import { ICardItemShop } from "../types/card";
 import { locCurrency } from "../lib/lib";
-
-const ShopCardBlock = styled.main``;
 
 const ShopCardContent = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const ShopCardTitle = styled.h2`
+const TitleStyle = styled.h2`
+  margin: 0;
+  padding: 0;
   font-family: var(--family);
   color: #838383;
   font-size: 20px;
+  margin-bottom: 20px;
 `;
 
 const ShopCardsSum = styled.div`
@@ -63,7 +63,11 @@ const ShopCardItems = styled.div`
   gap: 20px;
 `;
 
-const ShopCards: React.FC = () => {
+const SectionStyle = styled.section`
+  padding-top: 30px;
+`;
+
+const ShopCards: React.FC = (): JSX.Element => {
   const { shopCards = [] } = useSelector((state: any) => state.Card);
   const { t } = useTranslation();
 
@@ -78,14 +82,15 @@ const ShopCards: React.FC = () => {
 
   return (
     <Wrapper>
-      <ShopCardBlock>
-        <ShopCardTitle>{t("cart")}</ShopCardTitle>
+      <SectionStyle>
+        <TitleStyle>{t("cart")}</TitleStyle>
         <ShopCardContent>
           <ShopCardItems>
             {shopCards.map((item: ICardItemShop) => {
               return <ShopCardItem key={item.id} {...item} />;
             })}
           </ShopCardItems>
+
           <ShopCardsSum>
             <ShopCardText>{t("total")}:</ShopCardText>
             <ShopCardText>
@@ -94,7 +99,7 @@ const ShopCards: React.FC = () => {
             <ShopCardsButton>{t("payment")}</ShopCardsButton>
           </ShopCardsSum>
         </ShopCardContent>
-      </ShopCardBlock>
+      </SectionStyle>
     </Wrapper>
   );
 };

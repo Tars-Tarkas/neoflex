@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ICardItem } from "../types/card";
 import styled from "styled-components";
 import Wrapper from "./Wrapper";
 import Card from "./Card";
 
-const CardTitle = styled.h2`
+const TitleStyle = styled.h2`
   font-family: var(--family);
   color: #838383;
   font-size: 20px;
@@ -21,34 +22,41 @@ const CardsBlock = styled.div`
   gap: 30px;
 `;
 
-const CardSection = styled.section`
+const SectionStyle = styled.section`
   padding-top: 30px;
 `;
+interface ICardListProps {
+  title: string;
+}
 
-const CardList = () => {
+const CardList: React.FC<ICardListProps> = ({ title }): JSX.Element => {
   const { cards } = useSelector((state: any) => state.Card);
 
   const { headphones = [], wireless_headphones = [] } = cards;
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = title;
+  });
   return (
     <Wrapper>
-      <CardSection>
-        <CardTitle>{t("headphones")}</CardTitle>
+      <SectionStyle>
+        <TitleStyle>{t("headphones")}</TitleStyle>
         <CardsBlock>
           {headphones.map((item: ICardItem) => {
             return <Card key={item.id} {...item} />;
           })}
         </CardsBlock>
-      </CardSection>
-      <CardSection>
-        <CardTitle>{t("Wireless_headphones")}</CardTitle>
+      </SectionStyle>
+      <SectionStyle>
+        <TitleStyle>{t("Wireless_headphones")}</TitleStyle>
         <CardsBlock>
           {wireless_headphones.map((item: ICardItem) => {
             return <Card key={item.id} {...item} />;
           })}
         </CardsBlock>
-      </CardSection>
+      </SectionStyle>
     </Wrapper>
   );
 };

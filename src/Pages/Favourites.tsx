@@ -1,7 +1,9 @@
 import * as React from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import FavouritesList from "../components/FavouritesList";
 
 const langObj = {
   kz: "Каз",
@@ -9,11 +11,21 @@ const langObj = {
   en: "Eng",
 };
 const MainStyle = styled.main``;
-const Favourites = () => {
+
+interface IFavouritesProps {
+  title: string;
+}
+
+const Favourites: React.FC<IFavouritesProps> = ({ title }): JSX.Element => {
+  useEffect(() => {
+    document.title = title;
+  });
   return (
     <>
       <Header />
-      <MainStyle></MainStyle>
+      <MainStyle>
+        <FavouritesList />
+      </MainStyle>
       <Footer footerLang={langObj} />
     </>
   );

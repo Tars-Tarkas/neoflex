@@ -30,7 +30,7 @@ body {
   background-color: var(--background);
 }
 main {
-  min-height: calc(100vh - 238px);
+  min-height: calc(100vh - 149px);
 }
 footer {
   padding-top: 20px;
