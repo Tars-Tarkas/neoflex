@@ -12,7 +12,6 @@ const HeaderLogo = styled.span`
 
 const HeaderBlock = styled.header`
   padding-top: 16px;
-
   margin-bottom: 15px;
 `;
 
@@ -64,6 +63,10 @@ const HeaderLink = styled(NavLink)`
 const HeaderWrapper = styled.div`
   max-width: 1135px;
   margin: 0 auto;
+  @media (max-width: 1024px) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 `;
 
 interface HeaderProps {

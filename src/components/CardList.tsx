@@ -14,12 +14,18 @@ const TitleStyle = styled.h2`
   margin: 0;
   padding: 0;
   margin-bottom: 20px;
+  @media (max-width: 1024px) {
+    text-align: center;
+  }
 `;
 
 const CardsBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
 `;
 
 const SectionStyle = styled.section`

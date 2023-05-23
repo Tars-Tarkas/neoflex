@@ -10,6 +10,10 @@ import { locCurrency } from "../lib/lib";
 const ShopCardContent = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
 `;
 
 const TitleStyle = styled.h2`
@@ -58,9 +62,8 @@ const ShopCardText = styled.span`
 `;
 
 const ShopCardItems = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  max-width: 633px;
+  width: 100%;
 `;
 
 const SectionStyle = styled.section`

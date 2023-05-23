@@ -7,7 +7,8 @@ import { locCurrency } from "../lib/lib";
 
 const ShopCardItems = styled.div`
   position: relative;
-  width: 633px;
+  width: 100%;
+  max-width: 633px;
   height: 218px;
   background-color: white;
   border-radius: var(--radius);
@@ -17,7 +18,7 @@ const ShopCardItems = styled.div`
   padding-right: 28px;
   margin-bottom: 17px;
   display: grid;
-  grid-template-columns: 170px auto;
+  grid-template-columns: 170px 1fr;
   grid-template-rows: 152px 36px;
   align-items: center;
   grid-template-areas:
@@ -60,6 +61,7 @@ const ShopCardPrice = styled.span`
   color: #aaaaaa;
   font-size: 15px;
   font-weight: var(--fw-semibold);
+  width: 100%;
 `;
 
 const ShopCardTitle = styled.h3`
@@ -70,6 +72,7 @@ const ShopCardTitle = styled.h3`
   margin: 0;
   padding-top: 23px;
   margin-bottom: 12px;
+  width: 100%;
 `;
 
 const ShopCardCount = styled.div`
@@ -84,6 +87,7 @@ const ShopCardCount = styled.div`
 const ShopCardTitlePrice = styled.div`
   grid-area: B;
   align-self: center;
+  width: 100%;
 `;
 
 const ShopCardTotalPrice = styled.span`
@@ -93,6 +97,7 @@ const ShopCardTotalPrice = styled.span`
   font-weight: var(--fw-semibold);
   grid-area: D;
   text-align: right;
+  width: 100%;
 `;
 
 const ShopCardItem: React.FC<ICardItemShop> = (item) => {

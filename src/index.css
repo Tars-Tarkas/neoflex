@@ -30,11 +30,18 @@ body {
   background-color: var(--background);
 }
 main {
-  min-height: calc(100vh - 149px);
+  min-height: calc(100vh - 229px);
+  @media (max-width: 768px) {
+    min-height: calc(100vh - 330px);
+  }
 }
+
 footer {
-  padding-top: 20px;
-  height: 169px;
+  margin-top: 20px;
+  height: 149px;
+  @media (max-width: 768px) {
+    height: 250px;
+  }
 }
 
 @font-face {
