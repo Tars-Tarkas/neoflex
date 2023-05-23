@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import Wrapper from "./Wrapper";
 
 const SectionStyle = styled.section`
@@ -16,11 +17,12 @@ const TitleStyle = styled.h2`
 `;
 
 const FavouritesList = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Wrapper>
         <SectionStyle>
-          <TitleStyle>Избранное</TitleStyle>
+          <TitleStyle>{t("favourites")}</TitleStyle>
         </SectionStyle>
       </Wrapper>
     </>

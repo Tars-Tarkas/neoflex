@@ -170,8 +170,6 @@ const Footer = (props: footerProps) => {
     }
   }, [i18n.language, footerLang]);
 
-  console.log(toggleLang);
-
   return (
     <Wrapper>
       <FooterBlock>

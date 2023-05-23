@@ -4,7 +4,7 @@ import ShopList from "./Pages/ShopList";
 import Favorites from "./Pages/Favourites";
 import Contacts from "./Pages/Contacts";
 import Requirement from "./Pages/Requirement";
-import PageNotFound from "./components/PageNotFound.tsx";
+import PageNotFound from "./Pages/PageNotFound";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 

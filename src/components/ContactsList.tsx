@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import Wrapper from "./Wrapper";
 
 const SectionStyle = styled.section`
@@ -16,11 +17,12 @@ const TitleStyle = styled.h2`
 `;
 
 const ContactsList = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Wrapper>
         <SectionStyle>
-          <TitleStyle>Контакты</TitleStyle>
+          <TitleStyle>{t("сontacts")}</TitleStyle>
         </SectionStyle>
       </Wrapper>
     </>

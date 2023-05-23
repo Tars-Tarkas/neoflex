@@ -52,6 +52,10 @@ const ShopCardsButton = styled.button`
   font-family: var(--family);
   bottom: 0;
   left: 0;
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #838383;
+  }
 `;
 
 const ShopCardText = styled.span`
@@ -74,9 +78,9 @@ const ShopCards: React.FC = (): JSX.Element => {
   const { shopCards = [] } = useSelector((state: any) => state.Card);
   const { t } = useTranslation();
 
-  const getTotal = () => {
+  const getTotal = (array: []) => {
     let totalPrice = 0;
-    shopCards.forEach((item: ICardItemShop) => {
+    array.forEach((item: ICardItemShop) => {
       totalPrice += item.price * item.count;
     });
 
@@ -97,9 +101,11 @@ const ShopCards: React.FC = (): JSX.Element => {
           <ShopCardsSum>
             <ShopCardText>{t("total")}:</ShopCardText>
             <ShopCardText>
-              {locCurrency(getTotal().totalPrice, true)}
+              {locCurrency(getTotal(shopCards).totalPrice, true)}
             </ShopCardText>
-            <ShopCardsButton>{t("payment")}</ShopCardsButton>
+            <ShopCardsButton disabled={getTotal(shopCards).totalPrice === 0}>
+              {t("payment")}
+            </ShopCardsButton>
           </ShopCardsSum>
         </ShopCardContent>
       </SectionStyle>

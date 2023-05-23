@@ -9,6 +9,14 @@ npm install
 npm run start
 ```
 
+### Языки программирования и инструменты
+
+<div id="badges" style='text-align:center; padding:30px' >
+  <img src="./design/icons/react.svg" height ="80" alt="ReactJS" style='padding-right:20px'/>
+  <img src="./design/icons/typescript.svg" height ="80" alt="Typescript"/>  
+  <img src="./design/icons/styled-components.png" height ="80" alt="Styled-Components" style='padding-left:20px'/>    
+</div>
+
 ```
 Первая страница – каталог товаров, вторая – корзина с приобретенными товарами.
 Макет доступен по сылке: https://www.figma.com/file/bBkg5W8GRwGmhNCVeXevoN/Neoflex-Invite-Test?node-id=0%3A1
