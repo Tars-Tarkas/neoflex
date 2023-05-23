@@ -5,7 +5,6 @@ import { ICardItem } from "../types/card";
 import { useDispatch } from "react-redux";
 import { addShopList } from "../store/CardSlice";
 import { locCurrency } from "../lib/lib";
-import { type } from "os";
 
 const CardImgBlock = styled.div`
   display: flex;

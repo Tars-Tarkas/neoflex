@@ -13,7 +13,7 @@ export const fetchCard: any = createAsyncThunk(
         },
       });
       if (!res.ok) {
-        throw new Error("Server Error!");
+        throw new Error("Ошибка в открытии файла JSON");
       }
       const data = await res.json();
       return data;
