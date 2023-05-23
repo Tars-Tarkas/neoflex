@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/neoflex/static/css/main.70c90d8d.css",
-    "main.js": "/neoflex/static/js/main.be750e78.js",
+    "main.js": "/neoflex/static/js/main.a28de0a3.js",
     "static/js/787.aeb3bbbf.chunk.js": "/neoflex/static/js/787.aeb3bbbf.chunk.js",
     "static/media/i-neoflex.svg?7y08xl": "/neoflex/static/media/i-neoflex.4f7540f63bdcc73dc5ca.svg",
     "static/media/i-neoflex.eot?7y08xl": "/neoflex/static/media/i-neoflex.dea8b3c4bfa738a77363.eot",
@@ -10,11 +10,11 @@
     "index.html": "/neoflex/index.html",
     "static/media/getFetch.cjs": "/neoflex/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.70c90d8d.css.map": "/neoflex/static/css/main.70c90d8d.css.map",
-    "main.be750e78.js.map": "/neoflex/static/js/main.be750e78.js.map",
+    "main.a28de0a3.js.map": "/neoflex/static/js/main.a28de0a3.js.map",
     "787.aeb3bbbf.chunk.js.map": "/neoflex/static/js/787.aeb3bbbf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.70c90d8d.css",
-    "static/js/main.be750e78.js"
+    "static/js/main.a28de0a3.js"
   ]
 }
